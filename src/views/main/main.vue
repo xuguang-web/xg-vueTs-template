@@ -1,11 +1,13 @@
 <template>
-  <div class="main">{{ counterStore.couter }}-{{ counterStore.doubleConter }}</div>
+  <div class="main">
+       555
+  </div>
 </template>
 
 <script setup lang="ts" name="main">
-import useCounterStore from "@/store/counter"
+// import useCounterStore from "@/store/counter"
 
-const counterStore = useCounterStore()
+// const counterStore = useCounterStore()
 </script>
 
 <style lang="less" scoped></style>
