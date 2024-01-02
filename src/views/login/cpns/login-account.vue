@@ -10,73 +10,76 @@
 </template>
 
 <script lang="ts" setup>
-import { ElForm } from 'element-plus'
-import { ref,reactive,defineProps} from 'vue'
+import { ElForm, ElMessage } from "element-plus"
+import { ref, reactive, defineProps, watch } from "vue"
 import { accountRules } from "../config"
-import type { accountProps } from "../types"
-import router from '@/router'
-import localCache from '@/utils/cache'
+
 import { login } from "@/service/login"
+
+import type { accountProps } from "../types"
+import router from "@/router"
+import localCache from "@/utils/cache"
 
 const props = defineProps<accountProps>()
 
 const account = reactive({
-    name:"",
-    password:""
+  name: "",
+  password: ""
 })
 
-
-if(props.propAccount?.name) {
-    console.log('%c [  ]-29', 'font-size:13px; background:pink; color:#bf2c9f;',props.propAccount?.name )
-    const {name,password} = props.propAccount
-    account.name = name;
-    account.password = password
-}
-
-
-
+watch(
+  props.propAccount,
+  (val) => {
+    if (val?.name) {
+      const { name, password } = props.propAccount
+      account.name = name
+      account.password = password
+    }
+  },
+  { deep: true }
+)
 
 // 验证form的函数
 const formRef = ref<InstanceType<typeof ElForm>>()
 
 const accountLoginAction = (isKeep: boolean) => {
   // 1.验证是否成功
-  formRef.value?.validate((valid) => {
+  formRef.value?.validate((valid: boolean) => {
     if (valid) {
       // 登录逻辑
       const name = account.name
       const password = account.password
 
       // 记住密码
-      if(isKeep) {
-          localCache.setCache('name', name)
-          localCache.setCache('password', password)
-      }else {
-          localCache.deleteCache('name')
-          localCache.deleteCache('password')
+      if (isKeep) {
+        localCache.setCache("name", name)
+        localCache.setCache("password", password)
+      } else {
+        localCache.deleteCache("name")
+        localCache.deleteCache("password")
       }
 
       // 登录操作
-      handleLogin(name,password)
+      handleLogin(name, password)
     }
   })
 }
 
-const handleLogin =  async (name:string, password:string) => {
-   const loginResult = await login({name,password});
+const handleLogin = async (name: string, password: string) => {
+  const loginResult = await login({ name, password })
 
-   const { token }  = loginResult.data.data
-   localCache.setCache('token', token)
-
-   router.push('/main')
+  const { message, data, code } = loginResult
+  if (code === 0) {
+    ElMessage.success(message)
+    localCache.setCache("token", data?.token)
+    router.push("/main")
+  }
 }
 
 defineExpose({
   accountLoginAction,
   account
 })
-
-
 </script>
 
 <style scoped></style>

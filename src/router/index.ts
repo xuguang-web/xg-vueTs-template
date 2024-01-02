@@ -1,12 +1,12 @@
 import { createRouter, createWebHistory } from "vue-router"
-import localCache from '@/utils/cache'
+import localCache from "@/utils/cache"
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: "/",
-      redirect: "/login"
+      redirect: "/main"
     },
     {
       path: "/login",
@@ -25,12 +25,11 @@ const router = createRouter({
   ]
 })
 
-
 router.beforeEach((to) => {
-  const token = localCache.getCache('token')
-  if (to.path !== '/login') {
+  const token = localCache.getCache("token")
+  if (to.path !== "/login") {
     if (!token) {
-      return '/login'
+      return "/login"
     }
   }
 })

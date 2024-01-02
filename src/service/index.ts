@@ -1,7 +1,6 @@
 import XGRequest from "./request"
 import { BASE_URL, TIME_OUT, BASE_URL1 } from "./config"
-import { ElMessage } from 'element-plus'
-
+import { ElMessage } from "element-plus"
 
 // 项目原来的接口
 export const xgRequest = new XGRequest({
@@ -25,7 +24,7 @@ export const xgRequest = new XGRequest({
 
 // 自己写的接口
 export const xgDefineRequest = new XGRequest({
-  baseURL: BASE_URL1 ,
+  baseURL: BASE_URL1,
   timeout: TIME_OUT,
   interceptors: {
     // 请求添加token
@@ -37,10 +36,9 @@ export const xgDefineRequest = new XGRequest({
     },
     // 响应拦截
     responseSuccessFn: (res) => {
-      const {code,message} = res.data
-      if(code !== 0) {
-         ElMessage.error(message)
-         return
+      const { code, message } = res.data
+      if (code !== 0) {
+        ElMessage.error(message)
       }
       return res
     },
