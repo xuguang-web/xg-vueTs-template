@@ -1,6 +1,7 @@
 import XGRequest from "./request"
 import { BASE_URL, TIME_OUT, BASE_URL1 } from "./config"
 import { ElMessage } from "element-plus"
+import localCache from "@/utils/cache"
 
 // 项目原来的接口
 export const xgRequest = new XGRequest({
@@ -29,6 +30,10 @@ export const xgDefineRequest = new XGRequest({
   interceptors: {
     // 请求添加token
     requestSuccessFn: (config) => {
+      const token = localCache.getCache("token")
+      if (token && config.headers) {
+        config.headers.Authorization = `Bearer ${token}`
+      }
       return config
     },
     requestFailFn: (err) => {

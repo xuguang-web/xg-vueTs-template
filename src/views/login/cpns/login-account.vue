@@ -68,6 +68,8 @@ const accountLoginAction = (isKeep: boolean) => {
 const handleLogin = async (name: string, password: string) => {
   const loginResult = await login({ name, password })
 
+  console.log("%c [  ]-71", "font-size:13px; background:pink; color:#bf2c9f;", loginResult)
+
   const { message, data, code } = loginResult
   if (code === 0) {
     ElMessage.success(message)

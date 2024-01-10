@@ -2,18 +2,17 @@
   <el-dialog
     class="xg-dialog"
     :title="title"
-    width="60%"
     v-model="visible"
     :before-close="handleClose"
     v-bind="$attrs"
+    :width="width"
   >
-    <div class="body-wrapper" :class="autoHeight ? 'autoHeight' : 'fixedHeight'">
-      <slot></slot>
-    </div>
+    <slot></slot>
+
     <template #footer>
       <span class="dialog-footer">
-        <el-button v-if="showCancelButton" @click="handleClose">取消</el-button>
-        <el-button v-if="showConfirmButton" type="primary" @click="handleConfirm">确认</el-button>
+        <el-button @click="handleClose">取消</el-button>
+        <el-button type="primary" @click="handleConfirm">确认</el-button>
       </span>
     </template>
   </el-dialog>
@@ -29,6 +28,10 @@ const props = defineProps({
   autoHeight: {
     type: Boolean,
     default: true
+  },
+  width: {
+    type: [Number, String],
+    default: "650px"
   }
 })
 
@@ -57,13 +60,27 @@ const handleConfirm = () => {
 .fixedHeight {
   height: 56vh;
 }
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f0f0f0;
+  border-radius: 8px;
+}
 </style>
 
 <style lang="less">
 .xg-dialog {
   .el-dialog__body {
     min-height: 200px;
-    padding: 16px;
+    padding: 16px 24px;
   }
   .el-dialog__header {
     margin: 0 !important;

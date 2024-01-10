@@ -8,7 +8,6 @@ enum userApi {
 
 // 用户列表接口
 export async function userList(data: list) {
-  console.log("%c [  ]-12", "font-size:13px; background:pink; color:#bf2c9f;", data)
   const res = await xgDefineRequest.post<Info>({
     url: userApi.user + "/list",
     data

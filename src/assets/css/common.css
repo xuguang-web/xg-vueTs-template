@@ -2,3 +2,9 @@ html,
 body {
   height: 100%;
 }
+
+/* .app-config-form {
+  .el-form-item__label {
+    color: red !important;
+  }
+} */
