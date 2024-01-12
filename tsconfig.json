@@ -16,5 +16,4 @@
     "types": ["element-plus/global"],
     "noImplicitAny": false
   },
-  "include": ["./src/**/**/*.ts"]
 }
