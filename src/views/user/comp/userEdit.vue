@@ -35,7 +35,6 @@
 
 <script setup lang="ts">
 import { useCommonStore } from "@/store/common"
-import AppDialog from "@/components/app-dialog.vue"
 // import type { UploadProps } from "element-plus"
 
 const visible = ref(true)

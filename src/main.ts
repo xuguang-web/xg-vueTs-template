@@ -10,6 +10,8 @@ import App from "./App.vue"
 import router from "./router"
 import piana from "./store"
 
+import CommonPart from '@/common';
+
 import * as ElementPlusIconsVue from "@element-plus/icons-vue"
 
 const app = createApp(App)
@@ -22,5 +24,6 @@ app.use(createPinia())
 app.use(router)
 app.use(piana)
 app.use(ElementPlus)
+app.use(CommonPart)
 
 app.mount("#app")
