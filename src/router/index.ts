@@ -16,11 +16,18 @@ const router = createRouter({
     {
       path: "/main",
       name: "main",
-      component: () => import("@/views/main/main.vue")
-    },
-    {
-      path: "/:patchMatch(.*)",
-      component: () => import("@/views/notFound/not-found.vue")
+      component: () => import("@/views/main/main.vue"),
+      children: [
+        {
+          path: "/user",
+          name: "user",
+          component: () => import("@/views/user/index.vue")
+        },
+        {
+          path: "/:patchMatch(.*)",
+          component: () => import("@/views/notFound/not-found.vue")
+        }
+      ]
     }
   ]
 })

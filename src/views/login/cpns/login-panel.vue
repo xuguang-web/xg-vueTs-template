@@ -1,20 +1,11 @@
 <template>
   <div class="login-panel">
-    <h1 class="title">后台管理系统</h1>
-    <el-tabs type="border-card" v-model="currentTab" stretch>
-      <el-tab-pane name="account">
-        <template #label>
-          <span><i class="el-icon-user-solid"></i>账号登录</span>
-        </template>
-        <login-account :propAccount="account" ref="accountRef" />
-      </el-tab-pane>
-      <el-tab-pane name="register">
-        <template #label>
-          <span><i class="el-icon-mobile-phone"></i>用户注册</span>
-        </template>
-        <register-account ref="registerRef" />
-      </el-tab-pane>
-    </el-tabs>
+    <img src="../../../assets/img/login/omms-login-position.png" alt="" />
+    <div class="welcome">
+      <div class="welcome-desc">你好，欢迎登录</div>
+      <div class="welcome-title">后台管理系统</div>
+    </div>
+    <login-account :propAccount="account" ref="accountRef" />
     <div class="control-account" v-if="currentTab === 'account'">
       <el-checkbox v-model="isKeep">记住密码</el-checkbox>
     </div>
@@ -77,14 +68,41 @@ const goLogin = () => {
 
 <style lang="less" scoped>
 .login-panel {
-  width: 330px;
-  margin-bottom: 150px;
-
-  .title {
-    text-align: center;
-    margin-bottom: 8px;
+  position: absolute;
+  top: 20%;
+  right: 130px;
+  width: 416px;
+  height: 420px;
+  padding: 40px 48px 0;
+  box-shadow: 0 4px 24px 0 rgba(0, 80, 182, 0.5);
+  border-radius: 8px;
+  background: linear-gradient(180deg, #fff, #fcfdff 79%, #e2f1ff);
+  img {
+    position: absolute;
+    top: 0;
+    right: 0;
   }
-
+  .welcome {
+    &-desc {
+      width: 168px;
+      height: 36px;
+      font-size: 24px;
+      font-weight: 400;
+      color: rgba(0, 0, 0, 0.65);
+      line-height: 36px;
+      margin-bottom: 4px;
+    }
+    &-title {
+      width: 272px;
+      height: 48px;
+      font-size: 32px;
+      font-weight: 700;
+      color: rgba(0, 0, 0, 0.85);
+      line-height: 48px;
+      letter-spacing: 2px;
+      margin-bottom: 48px;
+    }
+  }
   .control-account {
     margin-top: 12px;
     display: flex;
@@ -93,8 +111,17 @@ const goLogin = () => {
   }
 
   .login-btn {
-    margin-top: 10px;
+    display: flex;
+    align-items: center;
     width: 100%;
+    margin-top: 24px;
+    margin-bottom: 16px;
+    cursor: pointer;
+    height: 40px !important;
+    line-height: 40px !important;
+    background: #1890ff;
+    border-radius: 4px;
+    color: #fff;
   }
 }
 </style>

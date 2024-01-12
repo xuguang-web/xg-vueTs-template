@@ -1,13 +1,10 @@
 export interface Account {
-    name: string
-    password: string
+  name: string
+  password: string
 }
 
 export interface LoginInfo {
-    id: number
-    token: string
-    name: string
-  }
-
-
-  
+  id: number
+  token: string
+  name: string
+}

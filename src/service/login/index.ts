@@ -19,7 +19,7 @@ export async function login(account: Account) {
 // 注册接口
 export async function register(account: Account) {
   const res = await xgDefineRequest.post<LoginInfo>({
-    url: LoginApi.Register,
+    url: LoginApi.Register + "/add",
     data: account
   })
   return res.data

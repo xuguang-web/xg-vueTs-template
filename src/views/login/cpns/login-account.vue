@@ -1,5 +1,5 @@
 <template>
-  <el-form :model="account" label-width="60px" ref="formRef" :rules="accountRules">
+  <el-form :model="account" label-width="42px" ref="formRef" :rules="accountRules">
     <el-form-item label="账号" prop="name">
       <el-input v-model="account.name" />
     </el-form-item>
@@ -68,6 +68,8 @@ const accountLoginAction = (isKeep: boolean) => {
 const handleLogin = async (name: string, password: string) => {
   const loginResult = await login({ name, password })
 
+  console.log("%c [  ]-71", "font-size:13px; background:pink; color:#bf2c9f;", loginResult)
+
   const { message, data, code } = loginResult
   if (code === 0) {
     ElMessage.success(message)
@@ -82,4 +84,10 @@ defineExpose({
 })
 </script>
 
-<style scoped></style>
+<style lang="less" scoped>
+:deep {
+  .el-form-item__label::before {
+    display: none;
+  }
+}
+</style>
