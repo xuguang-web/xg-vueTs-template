@@ -35,7 +35,6 @@
 
 <script setup lang="ts">
 import { useCommonStore } from "@/store/common"
-// import type { UploadProps } from "element-plus"
 
 const visible = ref(true)
 const formData = reactive({
@@ -48,7 +47,6 @@ const formData = reactive({
   endTime: ""
 })
 const time = ref("")
-const imageUrl = ref("")
 
 const emit = defineEmits(["confirm", "close"])
 

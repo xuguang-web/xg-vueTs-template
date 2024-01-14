@@ -24,6 +24,16 @@ const router = createRouter({
           component: () => import("@/views/user/index.vue")
         },
         {
+          path: "/point",
+          name: "point",
+          component: () => import("@/views/visualization/point.vue")
+        },
+        {
+          path: "/galaxy",
+          name: "galaxy",
+          component: () => import("@/views/visualization/galaxy.vue")
+        },
+        {
           path: "/:patchMatch(.*)",
           component: () => import("@/views/notFound/not-found.vue")
         }

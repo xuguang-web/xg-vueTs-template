@@ -41,6 +41,7 @@ const handleAdd = () => {
 
 <style lang="less" scoped>
 .user {
+  padding: 16px;
   &-button {
     margin-bottom: 8px;
   }

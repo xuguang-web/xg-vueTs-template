@@ -7,8 +7,6 @@
       background-color="#324157"
       text-color="#bfcbd9"
       active-text-color="#20a0ff"
-      unique-opened
-      router
     >
       <img src="../../../assets/img/sidebar/menu-bg-bottom.7b20809a.png" alt="" />
       <template v-for="item in items">
@@ -20,25 +18,15 @@
               </el-icon>
               <span>{{ item.title }}</span>
             </template>
-            <template v-for="subItem in item.subs">
-              <el-sub-menu v-if="subItem.subs" :index="subItem.index" :key="subItem.index">
-                <template #title>{{ subItem.title }}</template>
-                <el-menu-item
-                  v-for="(threeItem, i) in subItem.subs"
-                  :key="i"
-                  :index="threeItem.index"
-                >
-                  {{ threeItem.title }}
-                </el-menu-item>
-              </el-sub-menu>
-              <el-menu-item v-else>
-                {{ subItem.title }}
+            <template v-for="subitem in item.subs" :key="subitem.index">
+              <el-menu-item @click="handleItemClick(subitem)">
+                {{ subitem.title }}
               </el-menu-item>
             </template>
           </el-sub-menu>
         </template>
         <template v-else>
-          <el-menu-item :index="item.index" :key="item.index" v-permiss="item.permiss">
+          <el-menu-item :index="item.index" :key="item.index">
             <el-icon>
               <component :is="item.icon"></component>
             </el-icon>
@@ -54,33 +42,17 @@
 import { computed } from "vue"
 import { useSidebarStore } from "@/store/sidebar"
 import { useRoute } from "vue-router"
-
-const items = [
-  {
-    icon: "user",
-    index: "/user",
-    title: "用户页面"
-  }
-  // {
-  //   icon: "PieChart",
-  //   title: "canvas",
-  //   subs: [
-  //     {
-  //       index: "/point",
-  //       title: "指针动画",
-  //     },
-  //     {
-  //       index: "/galaxy",
-  //       title: "星系动画",
-  //     }
-  //   ]
-  // }
-]
+import { items } from "../config"
 
 const route = useRoute()
+const router = useRouter()
 const onRoutes = computed(() => {
   return route.path
 })
+
+const handleItemClick = (item) => {
+  router.push(item.index)
+}
 
 const sidebar = useSidebarStore()
 </script>
@@ -92,6 +64,9 @@ const sidebar = useSidebarStore()
     background-repeat: no-repeat;
     .el-sub-menu__title {
       color: #ffffff;
+      &:hover {
+        background-color: #337ecc;
+      }
     }
     &-item {
       color: #ffffff;
